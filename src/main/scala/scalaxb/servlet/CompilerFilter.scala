@@ -21,10 +21,8 @@ class CompilerFilter extends unfiltered.filter.Planify ({
     def opt(s: String) = nonempty(s).headOption
     
     try {
-      // lazy val files = (nonempty("arg") map { x => SchemaFile.fromURI(new URI(x)) }) ++
-      //  (multipart map { x => SchemaFile.fromBytes(x.name, x.bytes) })
-      lazy val files = (multipart map { x => SchemaFile.fromBytes(x.name, x.bytes) })
-      
+      lazy val files = (nonempty("arg") map { x => SchemaFile.fromURI(new URI(x)) }) ++
+        (multipart map { x => SchemaFile.fromBytes(x.name, x.bytes) })
       
       lazy val config = Config(packageNames = Map[Option[String], Option[String]](
           (None -> opt("defaultPackageName")) ::

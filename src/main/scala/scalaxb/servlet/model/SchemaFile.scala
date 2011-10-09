@@ -8,15 +8,14 @@ case class SchemaFile(uri: URI, reader: Reader)
 object SchemaFile {
   import java.net.URL
   
-  // def fromURI(uri: URI): SchemaFile = {
-  //   import com.google.appengine.api.urlfetch._
-  // 
-  //   val svc = URLFetchServiceFactory.getURLFetchService();
-  //   val response = svc.fetch(uri.toURL)
-  //   val stream = new java.io.ByteArrayInputStream(response.getContent)
-  //   val reader = new java.io.InputStreamReader(stream)
-  //   SchemaFile(uri, reader)
-  // }
+  def fromURI(uri: URI): SchemaFile = {
+    import dispatch._
+    val h = new Http
+    val s = h(url(uri.toString) as_str)
+    val stream = new java.io.ByteArrayInputStream(s.getBytes)
+    val reader = new java.io.InputStreamReader(stream)
+    SchemaFile(uri, reader)
+  }
   
   def fromBytes(name: String, content: Array[Byte]) = {
     val stream = new java.io.ByteArrayInputStream(content)
