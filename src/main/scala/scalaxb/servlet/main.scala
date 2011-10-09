@@ -1,5 +1,6 @@
 package scalaxb.servlet
 
+import util.Properties
 import unfiltered.request._
 import unfiltered.response._
 
