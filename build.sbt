@@ -15,4 +15,8 @@ libraryDependencies <++= version { v => Seq(
   "javax.servlet" % "servlet-api" % "2.3" % "provided"
 )}
 
+resolvers ++= Seq(
+  "sonatype-public" at "https://oss.sonatype.org/content/repositories/public",
+  "repo.codahale.com" at "http://repo.codahale.com")
+
 seq(startScriptForClassesSettings: _*)
