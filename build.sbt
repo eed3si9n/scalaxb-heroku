@@ -1,6 +1,6 @@
 name := "scalaxb-heroku"
 
-version := "0.7.1"
+version := "0.7.3"
 
 organization := "org.scalaxb"
 

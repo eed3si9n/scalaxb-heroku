@@ -5,7 +5,7 @@ import java.io.{File}
 
 object Driver {
   def process(files: Seq[SchemaFile], config: Config) = {
-    val module = Module.moduleByFileName(new File(files.head.uri.getPath), false)
+    val module = Module.moduleByFileName(new File(files.head.uri.getPath))
 
     implicit val fileReader = new CanBeRawSchema[SchemaFile, scala.xml.Node] {
       override def toRawSchema(value: SchemaFile) = CustomXML.load(value.reader)
