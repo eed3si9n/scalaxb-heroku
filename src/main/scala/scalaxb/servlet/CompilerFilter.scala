@@ -8,14 +8,13 @@ import scalaxb.compiler.{Config}
 import unfiltered.request._
 import unfiltered.response._
 import unfiltered.request.{Path => UFPath}
+import unfiltered.filter.request._
 
 class CompilerFilter extends unfiltered.filter.Planify ({
-  case req @ POST(UFPath(Seg("compile" :: what :: Nil)) & Params(params0)) =>
-    val (params, multipart) = req match {
-      case MultiPart(req) =>
-        val data = MultiPartParams.Memory(req)
-        (data.params, data.files("argf") filter {_.size > 0})
-      case _ => (params0, Nil)
+  case POST(UFPath(Seg("compile" :: what :: Nil)) & MultiPart(req)) =>
+    val (params, multipart) = MultiPartParams.Memory(req) match {
+      case MultipartData(params, files) =>
+        (params, files("argf") filter {_.size > 0})
     }
     def nonempty(s: String) = params(s) filter { "" != }
     def opt(s: String) = nonempty(s).headOption

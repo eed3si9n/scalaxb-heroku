@@ -1,17 +1,17 @@
 name := "scalaxb-heroku"
 
-version := "0.7.3"
+version := "1.0.0"
 
 organization := "org.scalaxb"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.9.2"
 
 libraryDependencies <++= version { v => Seq(
   "org.scalaxb" %% "scalaxb" % v,
-  "net.databinder" %% "dispatch-http" % "0.8.5",
-  "net.databinder" %% "unfiltered-filter" % "0.5.0",
-  "net.databinder" %% "unfiltered-uploads" % "0.5.0",  
-  "net.databinder" %% "unfiltered-jetty" % "0.5.0",
+  "net.databinder.dispatch" %% "dispatch-core" % "0.9.5",
+  "net.databinder" %% "unfiltered-filter" % "0.6.4",
+  "net.databinder" %% "unfiltered-filter-uploads" % "0.6.4", 
+  "net.databinder" %% "unfiltered-jetty" % "0.6.4",
   "javax.servlet" % "servlet-api" % "2.3" % "provided"
 )}
 
