@@ -4,7 +4,7 @@ import scalaxb.compiler.{Config, CanBeRawSchema, CanBeWriter, CustomXML, Module}
 import java.io.{File}
 
 object Driver {
-  def process(files: Seq[SchemaFile], config: Config) = {
+  def process(files: Seq[SchemaFile], config: Config): List[ScalaFile] = {
     val module = Module.moduleByFileName(new File(files.head.uri.getPath))
 
     implicit val fileReader = new CanBeRawSchema[SchemaFile, scala.xml.Node] {
@@ -17,8 +17,8 @@ object Driver {
     }
 
     module match {
-      case x: scalaxb.compiler.xsd.Driver    => x.processReaders(files, config)
-      case x: scalaxb.compiler.wsdl11.Driver => x.processReaders(files, config)
+      case x: scalaxb.compiler.xsd.Driver    => x.processReaders(files, config)._2
+      case x: scalaxb.compiler.wsdl11.Driver => x.processReaders(files, config)._2
     }
   }
 }

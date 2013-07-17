@@ -39,7 +39,7 @@ class CompilerFilter extends unfiltered.filter.Planify ({
           Seq("attachment; filename=\"" + what + "\"")) ~>
         ("""([.]\w+)$""".r.findFirstIn(what) match {
           case Some(".scala") => ResponseString(scalaFiles.head.content)
-          case Some(".zip") => ResponseBytes(ScalaFile.zip(scalaFiles))
+          case Some(".zip")   => ResponseBytes(ScalaFile.zip(scalaFiles))
           case _ => BadRequest ~> ResponseString("unsupported file extension.")
         })
     }
