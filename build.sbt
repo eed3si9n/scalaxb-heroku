@@ -1,17 +1,19 @@
+lazy val unfilteredVersion = "0.8.2"
+
 name := "scalaxb-heroku"
 
-version := "1.1.1"
+version := "1.2.1"
 
 organization := "org.scalaxb"
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.11.2"
 
 libraryDependencies <++= version { v => Seq(
   "org.scalaxb" %% "scalaxb" % v,
-  "net.databinder.dispatch" %% "dispatch-core" % "0.9.5",
-  "net.databinder" %% "unfiltered-filter" % "0.6.4",
-  "net.databinder" %% "unfiltered-filter-uploads" % "0.6.4", 
-  "net.databinder" %% "unfiltered-jetty" % "0.6.4",
+  "net.databinder.dispatch" %% "dispatch-core" % "0.11.2",
+  "net.databinder" %% "unfiltered-filter" % unfilteredVersion,
+  "net.databinder" %% "unfiltered-filter-uploads" % unfilteredVersion, 
+  "net.databinder" %% "unfiltered-jetty" % unfilteredVersion,
   "javax.servlet" % "servlet-api" % "2.3" % "provided"
 )}
 

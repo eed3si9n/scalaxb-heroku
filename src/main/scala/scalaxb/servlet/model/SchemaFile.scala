@@ -9,7 +9,7 @@ object SchemaFile {
   import java.net.URL
   
   def fromURI(uri: URI): SchemaFile = {
-    import dispatch._
+    import dispatch._, Defaults._
     val s = Http(url(uri.toString) OK as.String)
     val stream = new java.io.ByteArrayInputStream(s().getBytes)
     val reader = new java.io.InputStreamReader(stream)

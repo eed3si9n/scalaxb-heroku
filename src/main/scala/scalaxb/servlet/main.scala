@@ -6,5 +6,5 @@ import unfiltered.response._
 
 object Main extends App {
   val port = Properties.envOrElse("PORT", "8080").toInt
-  unfiltered.jetty.Http(port).plan(new CompilerFilter).run
+  unfiltered.jetty.Http(port).plan(CompilerFilter.filter).run
 }
